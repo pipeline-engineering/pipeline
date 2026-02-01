@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipeline Engineering | LinkedIn Ad Funnel Specialists</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        :root {
+            --primary: #0A2540;
+            --secondary: #0066CC;
+            --accent: #00D4AA;
+            --light: #F8F9FA;
+            --dark: #1A1A1A;
+            --gray: #6C757D;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .cta-button {
+            background: var(--secondary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,102,204,0.2);
+        }
+        
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border: 1px solid #eee;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            background: var(--light);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            font-size: 24px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Who We Help */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .client-item {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .client-item i {
+            color: var(--secondary);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            padding: 80px 40px;
+            margin: 50px 20px;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Pipeline<span>Engineering</span></a>
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#clients">Who We Help</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="#contact" class="cta-button">Get Free Audit</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Turn LinkedIn Ad Spend Into Predictable Demo Requests</h1>
+            <p>LinkedIn Ad Funnel Optimization for B2B MarTech SaaS Companies</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">Get Free Funnel Audit →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>We Fix The Leaks In Your LinkedIn Ad Funnel</h2>
+                <p>Stop wasting budget on broken conversion paths</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Funnel Audits</h3>
+                    <p>Identify where prospects drop off between ad click and demo request with detailed analytics and heat mapping.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Landing Page Optimization</h3>
+                    <p>Increase conversion rates with proven CRO principles tailored for B2B SaaS demo requests.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Conversion Tracking Setup</h3>
+                    <p>Accurately measure cost per qualified demo with enterprise-grade tracking and attribution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Help -->
+    <section id="clients" style="background: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>We Work Exclusively With</h2>
+                <p>Specialized expertise delivers better results</p>
+            </div>
+            <div class="clients-grid">
+                <div class="client-item">
+                    <i class="fas fa-building"></i>
+                    <h3>B2B MarTech SaaS</h3>
+                    <p>Marketing technology companies selling to businesses</p>
+                </div>
+                <div class="client-item">
+                    <i class="fas fa-users"></i>
+                    <h3>10-100 Employees</h3>
+                    <p>Scaling companies with marketing budgets</p>
+                </div>
+                <div class="client-item">
+                    <i class="fas fa-ad"></i>
+                    <h3>Running LinkedIn Ads</h3>
+                    <p>Already investing $5K+/month in LinkedIn advertising</p>
+                </div>
+                <div class="client-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Selling Via Demos</h3>
+                    <p>Sales process built around consultations/demonstrations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Simple process, predictable results</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>1. Free Audit</h3>
+                    <p>We analyze your current LinkedIn ad → landing page → form funnel for conversion leaks.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>2. Identify Leaks</h3>
+                    <p>Show you exactly where and why prospects drop off with data-driven insights.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>3. Fix & Optimize</h3>
+                    <p>Implement high-impact changes to increase demo requests immediately.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>4. Scale Results</h3>
+                    <p>Systematically improve performance over 90 days with continuous testing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Stop Wasting LinkedIn Ad Spend on Broken Funnels</h2>
+                <p>Book your free 30-minute funnel audit. No obligation. We'll show you 3 specific improvements you can make immediately.</p>
+                <a href="https://calendly.com/your-link" class="btn-primary" style="background: var(--accent);">Book Your Free Funnel Audit →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Pipeline Engineering</h3>
+                    <p>LinkedIn Ad Funnel Specialists for B2B MarTech SaaS Companies</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Funnel Audits</a></li>
+                        <li><a href="#services">Landing Page Optimization</a></li>
+                        <li><a href="#services">Conversion Tracking</a></li>
+                        <li><a href="#services">A/B Testing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> pipeline.engineering.agency@gmail.com</li>
+                        <li><i class="fas fa-calendar"></i> <a href="https://calendly.com/pipeline-engineering-agency/30min">Schedule Audit</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Pipeline Engineering. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
