@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pipeline Engineering | LinkedIn Ad Funnel Specialists</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Calendly Widget -->
+    <!-- Calendly CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <style>
         * {
             margin: 0;
@@ -94,6 +93,7 @@
         
         .cta-button:hover {
             background: var(--primary);
+            cursor: pointer;
         }
         
         /* Hero Section */
@@ -133,12 +133,15 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s;
+            border: none;
+            display: inline-block;
         }
         
         .btn-primary:hover {
             background: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0,102,204,0.2);
+            cursor: pointer;
         }
         
         /* Sections */
@@ -321,7 +324,7 @@
                 <a href="#process">Process</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;" class="cta-button">Get Free Audit</a>
+            <a href="#" class="cta-button" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;">Get Free Audit</a>
         </div>
     </header>
 
@@ -331,7 +334,7 @@
             <h1>Turn LinkedIn Ad Spend Into Predictable Demo Requests</h1>
             <p>LinkedIn Ad Funnel Optimization for B2B MarTech SaaS Companies</p>
             <div class="hero-buttons">
-                <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;" class="btn-primary">Get Free Funnel Audit →</a>
+                <a href="#" class="btn-primary" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;">Get Free Funnel Audit →</a>
             </div>
         </div>
     </section>
@@ -447,7 +450,7 @@
             <div class="cta-section">
                 <h2>Stop Wasting LinkedIn Ad Spend on Broken Funnels</h2>
                 <p>Book your free 30-minute funnel audit. No obligation. We'll show you 3 specific improvements you can make immediately.</p>
-                <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;" class="btn-primary" style="background: var(--accent);">Book Your Free Funnel Audit →</a>
+                <a href="#" class="btn-primary" style="background: var(--accent);" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;">Book Your Free Funnel Audit →</a>
             </div>
         </div>
     </section>
@@ -473,7 +476,7 @@
                     <h3>Contact</h3>
                     <ul class="footer-links">
                         <li><i class="fas fa-envelope"></i> pipeline.engineering.agency@gmail.com</li>
-                        <li><i class="fas fa-calendar"></i> <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;">Schedule Audit</a></li>
+                        <li><i class="fas fa-calendar"></i> <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;">Schedule Audit</a></li>
                     </ul>
                 </div>
             </div>
@@ -483,6 +486,9 @@
         </div>
     </footer>
 
+    <!-- Calendly JS -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
