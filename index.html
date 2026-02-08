@@ -3,45 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pipeline Engineering</title>
+    <title>Pipeline Engineering | ABM Funnel Systems</title>
     <style>
         /* 
-        ENTERPRISE DESIGN PRINCIPLES:
-        1. No color except for interaction states
-        2. No decorative elements
-        3. Typography hierarchy only
-        4. Maximum readability
-        5. Pixel-perfect alignment
+        ENTERPRISE DARK MODE PRINCIPLES:
+        1. Professional dark, not gaming/entertainment dark
+        2. High contrast for readability
+        3. No pure black (strains eyes)
+        4. Subtle depth with elevation
+        5. Professional typography only
         */
         
         :root {
-            /* Color System: Black, White, Gray Only */
-            --black: #000000;
-            --gray-90: #1A1A1A;
-            --gray-70: #4D4D4D;
-            --gray-50: #808080;
-            --gray-30: #B3B3B3;
-            --gray-10: #E6E6E6;
-            --white: #FFFFFF;
+            /* Professional Dark Palette */
+            --bg-primary: #0F1419;
+            --bg-secondary: #1A2029;
+            --bg-elevated: #252D38;
+            --bg-hover: #2D3748;
             
-            /* Typography System: One Family, Multiple Weights */
-            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
-                           Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            --text-primary: #FFFFFF;
+            --text-secondary: #CBD5E0;
+            --text-tertiary: #8A9BA8;
+            --text-accent: #63B3ED;
             
-            /* Spacing: 8px Grid System */
-            --space-1: 8px;
-            --space-2: 16px;
-            --space-3: 24px;
-            --space-4: 32px;
-            --space-6: 48px;
-            --space-8: 64px;
-            --space-12: 96px;
-            --space-16: 128px;
+            --border-light: #2D3748;
+            --border-medium: #4A5568;
+            --border-accent: #4299E1;
             
-            /* Container Widths */
-            --container-narrow: 720px;
-            --container-medium: 960px;
-            --container-wide: 1200px;
+            --accent-primary: #4299E1;
+            --accent-secondary: #3182CE;
+            
+            /* Typography */
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                         Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --font-mono: 'SF Mono', Monaco, 'Cascadia Mono', 'Roboto Mono', monospace;
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 2rem;
+            --space-xl: 4rem;
+            --space-2xl: 8rem;
+            
+            /* Elevation */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
         
         /* RESET */
@@ -57,73 +65,85 @@
         }
         
         body {
-            font-family: var(--font-primary);
+            font-family: var(--font-sans);
             font-weight: 400;
             line-height: 1.6;
-            color: var(--black);
-            background: var(--white);
+            color: var(--text-primary);
+            background: var(--bg-primary);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            letter-spacing: -0.01em;
+            overflow-x: hidden;
         }
         
-        /* TYPOGRAPHY HIERARCHY */
+        /* GRADIENT BACKGROUND */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(66, 153, 225, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(99, 179, 237, 0.03) 0%, transparent 50%),
+                linear-gradient(135deg, var(--bg-primary) 0%, #111826 100%);
+        }
+        
+        /* TYPOGRAPHY */
         h1, h2, h3, h4 {
-            font-weight: 500;
+            font-weight: 600;
             line-height: 1.2;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
         
         h1 {
             font-size: 3.5rem;
-            font-weight: 600;
-            margin-bottom: var(--space-3);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: var(--space-lg);
         }
         
         h2 {
             font-size: 2.5rem;
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-md);
         }
         
         h3 {
-            font-size: 1.75rem;
-            margin-bottom: var(--space-2);
+            font-size: 1.5rem;
+            margin-bottom: var(--space-sm);
         }
         
         p {
             font-size: 1.125rem;
             line-height: 1.7;
-            color: var(--gray-70);
-            margin-bottom: var(--space-3);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
         }
         
-        .text-large {
-            font-size: 1.25rem;
-            line-height: 1.6;
+        .text-accent {
+            color: var(--text-accent);
         }
         
-        .text-small {
-            font-size: 0.875rem;
-            color: var(--gray-50);
+        .text-tertiary {
+            color: var(--text-tertiary);
         }
         
-        /* LAYOUT SYSTEM */
+        /* LAYOUT */
         .container {
-            max-width: var(--container-medium);
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--space-4);
+            padding: 0 var(--space-xl);
+            position: relative;
+            z-index: 1;
         }
         
         .container-narrow {
-            max-width: var(--container-narrow);
+            max-width: 800px;
         }
         
         .section {
-            padding: var(--space-16) 0;
-        }
-        
-        .section-border {
-            border-top: 1px solid var(--gray-10);
+            padding: var(--space-2xl) 0;
         }
         
         /* HEADER */
@@ -132,101 +152,274 @@
             top: 0;
             left: 0;
             right: 0;
-            background: var(--white);
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
             z-index: 1000;
-            padding: var(--space-3) 0;
+            padding: var(--space-md) 0;
         }
         
         .header-container {
-            max-width: var(--container-wide);
-            margin: 0 auto;
-            padding: 0 var(--space-4);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .logo {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
             text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
             letter-spacing: -0.02em;
         }
         
-        /* NAVIGATION */
-        nav a {
-            color: var(--gray-70);
-            text-decoration: none;
-            font-size: 0.9375rem;
-            letter-spacing: 0.02em;
-            transition: color 0.15s ease;
+        .logo-text span {
+            color: var(--text-accent);
         }
         
-        nav a:hover {
-            color: var(--black);
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
         }
         
         /* HERO */
         .hero {
-            padding-top: var(--space-16);
-            padding-bottom: var(--space-12);
+            padding-top: 12rem;
+            padding-bottom: var(--space-2xl);
+            position: relative;
         }
         
         .hero-content {
-            max-width: var(--container-narrow);
+            max-width: 800px;
         }
         
-        /* SERVICES */
-        .services-grid {
+        .hero-gradient {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(66, 153, 225, 0.1) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+        }
+        
+        /* CARDS */
+        .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-4);
-            margin-top: var(--space-6);
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
         }
         
-        .service-item {
-            padding: var(--space-4);
+        .card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: var(--space-xl);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .service-number {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--gray-50);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: var(--space-2);
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-accent);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .card:hover:before {
+            opacity: 1;
+        }
+        
+        .card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: var(--space-lg);
         }
         
         /* CLIENTS */
-        .client-list {
-            margin-top: var(--space-6);
+        .clients-section {
+            position: relative;
+            overflow: hidden;
         }
         
-        .client-item {
-            padding: var(--space-3) 0;
-            border-bottom: 1px solid var(--gray-10);
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
         }
         
-        .client-item:last-child {
-            border-bottom: none;
+        .client-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-elevated));
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            transition: all 0.3s ease;
+        }
+        
+        .client-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+        }
+        
+        /* PROCESS */
+        .process-container {
+            position: relative;
+        }
+        
+        .process-line {
+            position: absolute;
+            top: 120px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), transparent);
+            z-index: 0;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .process-step {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: var(--space-xl);
+            width: 30%;
+            transition: all 0.3s ease;
+        }
+        
+        .process-step:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
         }
         
         /* CONTACT */
-        .contact-method {
-            margin-top: var(--space-4);
+        .contact-section {
+            position: relative;
         }
         
-        .contact-link {
-            font-size: 1.125rem;
-            color: var(--black);
+        .contact-card {
+            background: linear-gradient(135deg, var(--bg-elevated), var(--bg-secondary));
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: var(--space-2xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(66, 153, 225, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+        
+        .contact-email {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            color: var(--text-accent);
             text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.15s ease;
+            padding: var(--space-md) var(--space-xl);
+            background: var(--bg-hover);
+            border: 1px solid var(--border-medium);
+            border-radius: 12px;
+            margin-top: var(--space-lg);
+            transition: all 0.3s ease;
         }
         
-        .contact-link:hover {
-            border-bottom-color: var(--black);
+        .contact-email:hover {
+            background: var(--bg-elevated);
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
         
         /* BUTTONS */
@@ -234,229 +427,255 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: var(--space-2) var(--space-4);
-            font-family: inherit;
+            padding: var(--space-md) var(--space-xl);
+            font-family: var(--font-sans);
             font-size: 1rem;
             font-weight: 500;
             line-height: 1.5;
             text-decoration: none;
-            color: var(--black);
-            background: transparent;
-            border: 1px solid var(--gray-30);
-            border-radius: 4px;
+            border-radius: 10px;
+            border: 2px solid transparent;
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all 0.3s ease;
         }
         
-        .btn:hover {
-            border-color: var(--black);
-            background: var(--gray-10);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
         
         /* FOOTER */
         footer {
-            padding: var(--space-8) 0 var(--space-6);
-            border-top: 1px solid var(--gray-10);
+            padding: var(--space-xl) 0;
+            border-top: 1px solid var(--border-light);
+            margin-top: var(--space-2xl);
         }
         
         .footer-container {
-            max-width: var(--container-wide);
-            margin: 0 auto;
-            padding: 0 var(--space-4);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        /* UTILITIES */
-        .text-center {
-            text-align: center;
+        .copyright {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
         }
         
-        .mt-1 { margin-top: var(--space-1); }
-        .mt-2 { margin-top: var(--space-2); }
-        .mt-3 { margin-top: var(--space-3); }
-        .mt-4 { margin-top: var(--space-4); }
-        .mt-6 { margin-top: var(--space-6); }
-        .mt-8 { margin-top: var(--space-8); }
-        
-        .mb-1 { margin-bottom: var(--space-1); }
-        .mb-2 { margin-bottom: var(--space-2); }
-        .mb-3 { margin-bottom: var(--space-3); }
-        .mb-4 { margin-bottom: var(--space-4); }
-        .mb-6 { margin-bottom: var(--space-6); }
-        .mb-8 { margin-bottom: var(--space-8); }
-        
         /* RESPONSIVE */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.75rem;
             }
             
             h2 {
                 font-size: 2rem;
             }
             
-            .section {
-                padding: var(--space-12) 0;
+            .process-steps {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+            
+            .process-step {
+                width: 100%;
+            }
+            
+            .process-line {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-lg);
+            }
+            
+            h1 {
+                font-size: 2.25rem;
             }
             
             .hero {
-                padding-top: var(--space-12);
-                padding-bottom: var(--space-8);
+                padding-top: 8rem;
             }
             
-            .services-grid {
+            .card-grid,
+            .clients-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            nav {
+                display: none;
             }
             
             .footer-container {
                 flex-direction: column;
-                gap: var(--space-3);
+                gap: var(--space-md);
                 text-align: center;
             }
         }
         
         @media (max-width: 480px) {
             h1 {
-                font-size: 2rem;
+                font-size: 1.875rem;
             }
             
             h2 {
-                font-size: 1.75rem;
-            }
-            
-            p {
-                font-size: 1rem;
+                font-size: 1.5rem;
             }
             
             .container {
-                padding: 0 var(--space-3);
+                padding: 0 var(--space-md);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Gradient Background -->
+    <div class="gradient-bg"></div>
+    
     <!-- Header -->
     <header>
-        <div class="header-container">
-            <a href="#" class="logo">Pipeline Engineering</a>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">PE</div>
+                <div class="logo-text">Pipeline<span>Engineering</span></div>
+            </a>
             <nav>
-                <a href="#contact">Contact</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#clients" class="nav-link">Focus</a>
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
-        <div class="container container-narrow">
-            <h1>LinkedIn Ad Funnel Optimization for ABM Platforms</h1>
-            <p class="text-large">We identify and resolve conversion leaks between LinkedIn advertisements and qualified demo requests, increasing conversion rates by 25-40%.</p>
+        <div class="container hero-content">
+            <div class="hero-gradient"></div>
+            <h1>ABM Funnel Systems for Enterprise SaaS</h1>
+            <p>We design, audit, and optimize LinkedIn ad-to-demo conversion systems for B2B SaaS companies where every qualified demo impacts revenue.</p>
+            <a href="#contact" class="btn btn-primary mt-4">Request System Analysis</a>
         </div>
     </section>
 
     <!-- Services -->
-    <section class="section section-border">
+    <section class="section" id="services">
         <div class="container">
-            <h2>Services</h2>
-            <p>We specialize in analyzing and optimizing LinkedIn ad funnels for account-based marketing platforms. Our focus is on conversion path efficiency, not general marketing services.</p>
+            <h2>Systems Engineering</h2>
+            <p>We approach funnel optimization as a systems engineering problem, not a marketing exercise.</p>
             
-            <div class="services-grid">
-                <div class="service-item">
-                    <div class="service-number">01</div>
-                    <h3>Funnel Analysis</h3>
-                    <p>Comprehensive audit of your LinkedIn ad → landing page → demo request conversion path. Identification of specific friction points and leakage areas.</p>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-number">01</div>
+                    <h3>Funnel Architecture</h3>
+                    <p class="text-tertiary">Systematic analysis of your LinkedIn ad → landing page → demo request conversion path. Identification of structural leaks and friction points.</p>
                 </div>
                 
-                <div class="service-item">
-                    <div class="service-number">02</div>
-                    <h3>Conversion Optimization</h3>
-                    <p>Implementation of targeted improvements to messaging, form structure, and user experience to increase qualified demo conversion rates.</p>
+                <div class="card">
+                    <div class="card-number">02</div>
+                    <h3>Signal Validation</h3>
+                    <p class="text-tertiary">Audit of tracking, attribution, and data flow between your advertising platforms, website, and CRM systems.</p>
                 </div>
                 
-                <div class="service-item">
-                    <div class="service-number">03</div>
-                    <h3>Tracking Implementation</h3>
-                    <p>Accurate measurement of key conversion metrics and attribution tracking to inform ongoing optimization decisions.</p>
+                <div class="card">
+                    <div class="card-number">03</div>
+                    <h3>Conversion Engineering</h3>
+                    <p class="text-tertiary">Implementation of targeted improvements to messaging, form structure, and user experience to increase qualified demo conversion rates.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Clients -->
-    <section class="section section-border">
+    <!-- Focus -->
+    <section class="section clients-section" id="clients">
         <div class="container">
-            <h2>Focus</h2>
-            <p>We work exclusively with B2B SaaS companies in the account-based marketing and sales intelligence space.</p>
+            <h2>Enterprise Focus</h2>
+            <p>We specialize in complex B2B SaaS environments where traditional marketing agencies fail.</p>
             
-            <div class="client-list">
-                <div class="client-item">
-                    <h3>ABM Platforms</h3>
-                    <p>Companies providing account-based marketing software and services to B2B organizations.</p>
+            <div class="clients-grid">
+                <div class="client-card">
+                    <h3 class="text-accent">ABM Platforms</h3>
+                    <p class="text-tertiary">Account-based marketing platforms and sales intelligence tools selling to enterprise marketing and sales teams.</p>
                 </div>
                 
-                <div class="client-item">
-                    <h3>Sales Intelligence</h3>
-                    <p>Platforms offering sales intelligence, data enrichment, and go-to-market data solutions.</p>
+                <div class="client-card">
+                    <h3 class="text-accent">Marketing Technology</h3>
+                    <p class="text-tertiary">B2B marketing technology companies with complex, high-value sales processes and sophisticated buyers.</p>
                 </div>
                 
-                <div class="client-item">
-                    <h3>Marketing Technology</h3>
-                    <p>B2B marketing technology companies with complex, high-value sales processes.</p>
+                <div class="client-card">
+                    <h3 class="text-accent">Sales Infrastructure</h3>
+                    <p class="text-tertiary">Sales enablement, conversation intelligence, and revenue operations platforms requiring precision in lead qualification.</p>
+                </div>
+                
+                <div class="client-card">
+                    <h3 class="text-accent">Data Platforms</h3>
+                    <p class="text-tertiary">Data enrichment, intent data, and go-to-market intelligence platforms selling to technical and business stakeholders.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Process -->
-    <section class="section section-border">
-        <div class="container">
-            <h2>Process</h2>
-            <p>Our engagement model is structured, transparent, and focused on measurable results.</p>
+    <section class="section" id="process">
+        <div class="container process-container">
+            <h2>Engineering Process</h2>
+            <p>Structured methodology for systematic funnel improvement and optimization.</p>
             
-            <div class="services-grid mt-6">
-                <div class="service-item">
-                    <div class="service-number">1</div>
-                    <h3>Initial Analysis</h3>
-                    <p>We begin with a detailed review of your current funnel performance and conversion metrics.</p>
+            <div class="process-line"></div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <h3>01. System Audit</h3>
+                    <p class="text-tertiary">Comprehensive analysis of your current funnel architecture, tracking implementation, and conversion metrics.</p>
                 </div>
                 
-                <div class="service-item">
-                    <div class="service-number">2</div>
-                    <h3>Recommendations</h3>
-                    <p>Presentation of specific, actionable recommendations for improving conversion rates.</p>
+                <div class="process-step">
+                    <h3>02. Design Validation</h3>
+                    <p class="text-tertiary">Testing of hypotheses and validation of improvement opportunities through controlled experiments.</p>
                 </div>
                 
-                <div class="service-item">
-                    <div class="service-number">3</div>
-                    <h3>Implementation</h3>
-                    <p>Execution of agreed-upon improvements with ongoing measurement and optimization.</p>
+                <div class="process-step">
+                    <h3>03. Implementation</h3>
+                    <p class="text-tertiary">Systematic implementation of validated improvements with ongoing measurement and optimization.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact -->
-    <section class="section" id="contact">
+    <section class="section contact-section" id="contact">
         <div class="container container-narrow">
-            <h2 class="text-center">Contact</h2>
-            <p class="text-center">For initial inquiries, please contact us via email. We respond to all serious inquiries within one business day.</p>
-            
-            <div class="contact-method text-center">
-                <a href="mailto:contact@pipeline.engineering?subject=Inquiry%20Regarding%20LinkedIn%20Funnel%20Optimization&body=Company:%0A%0ACurrent%20LinkedIn%20Ad%20Spend:%0A%0APrimary%20Conversion%20Challenge:" 
-                   class="contact-link">
-                    contact@pipeline.engineering
+            <div class="contact-card">
+                <h2>System Analysis Request</h2>
+                <p class="text-tertiary">Submit a LinkedIn ad URL for initial system analysis. We respond to enterprise inquiries within 24 hours.</p>
+                
+                <a href="mailto:systems@pipeline.engineering?subject=System%20Analysis%20Request&body=LinkedIn%20Ad%20URL:%20%0A%0AMonthly%20LinkedIn%20Spend:%20%0A%0APrimary%20Conversion%20Challenge:%20" 
+                   class="contact-email">
+                    systems@pipeline.engineering
                 </a>
-                <p class="text-small mt-2">Response within 24 hours</p>
+                
+                <p class="text-tertiary mt-4">Enterprise engagement only. Minimum $10K/month LinkedIn ad spend required.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="text-small">Pipeline Engineering</div>
-            <div class="text-small">© <span id="currentYear"></span> All rights reserved.</div>
+        <div class="container footer-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">PE</div>
+                <div class="logo-text">Pipeline<span>Engineering</span></div>
+            </a>
+            <div class="copyright">
+                © <span id="currentYear"></span> Pipeline Engineering. ABM Funnel Systems.
+            </div>
         </div>
     </footer>
 
@@ -464,23 +683,33 @@
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
-            if (window.scrollY > 20) {
-                header.style.borderBottom = '1px solid var(--gray-10)';
+            if(window.scrollY > 50) {
+                header.style.background = 'rgba(15, 20, 25, 0.98)';
+                header.style.backdropFilter = 'blur(20px)';
             } else {
-                header.style.borderBottom = 'none';
+                header.style.background = 'rgba(15, 20, 25, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
             }
-        });
-        
-        // Smooth scroll for contact link
-        document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('#contact').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
         });
     </script>
 </body>
