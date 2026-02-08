@@ -3,32 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pipeline Engineering | LinkedIn Ad Funnel Specialists</title>
+    <title>Pipeline Engineering | LinkedIn Ad Funnel Optimization for ABM Platforms</title>
+    <meta name="description" content="We help ABM platforms optimize their LinkedIn ad → demo funnel. Stop losing engaged buyers to conversion leaks.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Calendly CSS -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <style>
+        /* CSS RESET & VARIABLES */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
         
         :root {
-            --primary: #0A2540;
-            --secondary: #0066CC;
-            --accent: #00D4AA;
-            --light: #F8F9FA;
-            --dark: #1A1A1A;
-            --gray: #6C757D;
+            --primary: #0A2540;       /* Dark Blue */
+            --secondary: #0066FF;     /* Bright Blue */
+            --accent: #00D4AA;        /* Teal */
+            --light: #F8FAFC;         /* Light Gray */
+            --dark: #1A1A1A;          /* Dark Gray */
+            --gray: #64748B;          /* Medium Gray */
             --white: #FFFFFF;
+            --success: #10B981;       /* Green */
+            --warning: #F59E0B;       /* Amber */
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
             line-height: 1.6;
             color: var(--dark);
             background: var(--white);
+            overflow-x: hidden;
         }
         
         .container {
@@ -37,114 +44,247 @@
             padding: 0 20px;
         }
         
-        /* Header */
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+        
+        /* HEADER */
         header {
             background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
         }
         
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 1.25rem 0;
         }
         
         .logo {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 1.75rem;
+            font-weight: 800;
             color: var(--primary);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .logo span {
             color: var(--secondary);
         }
         
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 2rem;
+            align-items: center;
         }
         
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            position: relative;
         }
         
-        .nav-links a:hover {
+        .nav-links a:not(.cta-button):hover {
             color: var(--secondary);
+        }
+        
+        .nav-links a:not(.cta-button):after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:not(.cta-button):hover:after {
+            width: 100%;
         }
         
         .cta-button {
             background: var(--secondary);
             color: white;
-            padding: 10px 24px;
-            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+            font-size: 0.9rem;
         }
         
         .cta-button:hover {
             background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 102, 255, 0.2);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
             cursor: pointer;
         }
         
-        /* Hero Section */
+        /* HERO SECTION */
         .hero {
-            padding: 160px 0 100px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            text-align: center;
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h200v200H0z' fill='none'/%3E%3Cpath d='M100 0c55.2 0 100 44.8 100 100s-44.8 100-100 100S0 155.2 0 100 44.8 0 100 0zm0 20c44.2 0 80 35.8 80 80s-35.8 80-80 80-80-35.8-80-80 35.8-80 80-80z' fill='%230066FF' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-size: 400px;
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
             color: var(--primary);
-            line-height: 1.2;
+            margin-bottom: 1.5rem;
         }
         
-        .hero p {
+        .hero-subtitle {
             font-size: 1.25rem;
             color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto 40px;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-highlight {
+            background: linear-gradient(120deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0) 100%);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 2rem 0;
+        }
+        
+        .hero-highlight p {
+            color: var(--primary);
+            font-weight: 500;
+            margin: 0;
         }
         
         .hero-buttons {
             display: flex;
-            gap: 15px;
-            justify-content: center;
+            gap: 1rem;
             flex-wrap: wrap;
+            margin-top: 2rem;
         }
         
         .btn-primary {
             background: var(--secondary);
             color: white;
-            padding: 14px 32px;
+            padding: 1rem 2rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s;
-            border: none;
-            display: inline-block;
+            border: 2px solid var(--secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .btn-primary:hover {
             background: var(--primary);
+            border-color: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,102,204,0.2);
-            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.2);
         }
         
-        /* Sections */
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--gray);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* SECTIONS */
         section {
             padding: 100px 0;
         }
@@ -155,100 +295,181 @@
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         .section-title p {
-            color: var(--gray);
             max-width: 600px;
-            margin: 0 auto;
+            margin: 1.5rem auto 0;
         }
         
-        /* Services */
+        /* SERVICES */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         
         .service-card {
             background: var(--white);
             padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            border: 1px solid #eee;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #E2E8F0;
+            position: relative;
+            overflow: hidden;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.1);
+            border-color: var(--secondary);
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .service-card:hover:before {
+            opacity: 1;
         }
         
         .service-icon {
-            background: var(--light);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 212, 170, 0.1));
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 25px;
+            margin-bottom: 1.5rem;
             color: var(--secondary);
-            font-size: 24px;
-        }
-        
-        .service-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
         }
         
-        /* Who We Help */
+        /* WHO WE HELP */
         .clients-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
         
         .client-item {
-            background: var(--light);
-            padding: 25px;
-            border-radius: 8px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .client-item:hover {
+            transform: translateY(-5px);
         }
         
         .client-item i {
             color: var(--secondary);
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
         
-        /* CTA Section */
+        /* PROCESS */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        /* CTA SECTION */
         .cta-section {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), #0D2B4E);
             color: white;
             text-align: center;
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 80px 40px;
             margin: 50px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.1) 0%, transparent 70%);
         }
         
         .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
         
         .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
             max-width: 600px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
         }
         
-        /* Footer */
+        /* FOOTER */
         footer {
-            background: var(--dark);
+            background: var(--primary);
             color: white;
             padding: 60px 0 30px;
         }
@@ -261,9 +482,9 @@
         }
         
         .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--white);
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
         }
         
         .footer-links {
@@ -271,35 +492,87 @@
         }
         
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 0.75rem;
         }
         
         .footer-links a {
-            color: #aaa;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .footer-links a:hover {
-            color: var(--secondary);
+            color: var(--accent);
         }
         
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #aaa;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
         }
         
-        /* Responsive */
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.75rem;
+            }
+            
+            h2 {
+                font-size: 2.25rem;
+            }
+        }
+        
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
             .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .hero {
+                padding: 140px 0 80px;
+                text-align: center;
+            }
+            
+            .hero:before {
                 display: none;
             }
             
-            .hero h1 {
-                font-size: 2.5rem;
+            h1 {
+                font-size: 2.25rem;
+            }
+            
+            h2 {
+                font-size: 1.875rem;
+            }
+            
+            section {
+                padding: 60px 0;
             }
             
             .hero-buttons {
@@ -307,34 +580,104 @@
                 align-items: center;
             }
             
-            section {
-                padding: 60px 0;
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
             }
+            
+            .cta-section {
+                margin: 30px 0;
+                padding: 60px 20px;
+                border-radius: 16px;
+            }
+            
+            .process-step {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.875rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* CALENDLY OVERRIDES */
+        .calendly-inline-widget {
+            min-height: 700px !important;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container nav-container">
-            <a href="#" class="logo">Pipeline<span>Engineering</span></a>
-            <nav class="nav-links">
+            <a href="#" class="logo">
+                <div class="logo-icon">PE</div>
+                Pipeline<span>Engineering</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-links" id="navLinks">
                 <a href="#services">Services</a>
                 <a href="#clients">Who We Help</a>
-                <a href="#process">Process</a>
-                <a href="#contact">Contact</a>
+                <a href="#process">Our Process</a>
+                <a href="#contact">Get Audit</a>
+                <a href="#" class="cta-button" id="headerCta">Free Funnel Audit</a>
             </nav>
-            <a href="#" class="cta-button" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;">Get Free Audit</a>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Turn LinkedIn Ad Spend Into Predictable Demo Requests</h1>
-            <p>LinkedIn Ad Funnel Optimization for B2B MarTech SaaS Companies</p>
-            <div class="hero-buttons">
-                <a href="#" class="btn-primary" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;">Get Free Funnel Audit →</a>
+            <div class="hero-content animate">
+                <h1>Stop Losing Engaged Buyers From Your LinkedIn Ads</h1>
+                <p class="hero-subtitle">We help ABM platforms optimize their LinkedIn ad → demo funnel. Fix conversion leaks that cost you 25-40% of potential demos.</p>
+                
+                <div class="hero-highlight">
+                    <p>🎯 Specialized in ABM Platforms | 🚀 30-Day Performance Guarantee | 💰 Pay Only for Results</p>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary" id="heroCta">
+                        <i class="fas fa-chart-line"></i>
+                        Get Free Funnel Audit →
+                    </a>
+                    <a href="#clients" class="btn-secondary">
+                        <i class="fas fa-eye"></i>
+                        See Who We Help
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -342,31 +685,31 @@
     <!-- Services -->
     <section id="services">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title animate">
                 <h2>We Fix The Leaks In Your LinkedIn Ad Funnel</h2>
-                <p>Stop wasting budget on broken conversion paths</p>
+                <p>Stop wasting budget on broken conversion paths between your LinkedIn ads and demo requests</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card animate">
                     <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-search"></i>
                     </div>
-                    <h3>Funnel Audits</h3>
-                    <p>Identify where prospects drop off between ad click and demo request with detailed analytics and heat mapping.</p>
+                    <h3>Funnel Leak Detection</h3>
+                    <p>Identify where prospects drop off between ad click → landing page → demo request. We pinpoint exact conversion leaks with heatmaps and session recordings.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card animate">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3>Landing Page Optimization</h3>
-                    <p>Increase conversion rates with proven CRO principles tailored for B2B SaaS demo requests.</p>
+                    <p>Increase conversion rates with proven CRO principles tailored for ABM platform demo requests. Message-match optimization, form simplification, trust building.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card animate">
                     <div class="service-icon">
-                        <i class="fas fa-filter"></i>
+                        <i class="fas fa-tachometer-alt"></i>
                     </div>
-                    <h3>Conversion Tracking Setup</h3>
-                    <p>Accurately measure cost per qualified demo with enterprise-grade tracking and attribution.</p>
+                    <h3>Performance Tracking</h3>
+                    <p>Accurately measure cost per qualified demo with enterprise-grade tracking. Real-time dashboards, attribution modeling, and ROI reporting.</p>
                 </div>
             </div>
         </div>
@@ -375,30 +718,30 @@
     <!-- Who We Help -->
     <section id="clients" style="background: var(--light);">
         <div class="container">
-            <div class="section-title">
-                <h2>We Work Exclusively With</h2>
-                <p>Specialized expertise delivers better results</p>
+            <div class="section-title animate">
+                <h2>We Work Exclusively With ABM Platforms</h2>
+                <p>Specialized expertise delivers 3-5x better results than generic agencies</p>
             </div>
             <div class="clients-grid">
-                <div class="client-item">
-                    <i class="fas fa-building"></i>
-                    <h3>B2B MarTech SaaS</h3>
-                    <p>Marketing technology companies selling to businesses</p>
+                <div class="client-item animate">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>ABM & Sales Intelligence</h3>
+                    <p>Platforms like 6sense, Terminus, ZoomInfo, Clearbit, and their competitors</p>
                 </div>
-                <div class="client-item">
-                    <i class="fas fa-users"></i>
-                    <h3>10-100 Employees</h3>
-                    <p>Scaling companies with marketing budgets</p>
+                <div class="client-item animate">
+                    <i class="fas fa-rocket"></i>
+                    <h3>10-200 Employees</h3>
+                    <p>Series A-C companies with marketing budgets and growth pressure</p>
                 </div>
-                <div class="client-item">
+                <div class="client-item animate">
                     <i class="fas fa-ad"></i>
-                    <h3>Running LinkedIn Ads</h3>
-                    <p>Already investing $5K+/month in LinkedIn advertising</p>
+                    <h3>$5K+/Month LinkedIn Ads</h3>
+                    <p>Already investing in LinkedIn but not getting enough qualified demos</p>
                 </div>
-                <div class="client-item">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3>Selling Via Demos</h3>
-                    <p>Sales process built around consultations/demonstrations</p>
+                <div class="client-item animate">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Demo-Driven Sales</h3>
+                    <p>Sales process built around consultations and product demonstrations</p>
                 </div>
             </div>
         </div>
@@ -407,38 +750,38 @@
     <!-- Process -->
     <section id="process">
         <div class="container">
-            <div class="section-title">
-                <h2>How It Works</h2>
-                <p>Simple process, predictable results</p>
+            <div class="section-title animate">
+                <h2>Our 4-Step Process</h2>
+                <p>Simple, transparent, and results-driven approach</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
+            <div class="process-steps">
+                <div class="process-step animate">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h3>Free Funnel Audit</h3>
+                        <p>We analyze your current LinkedIn ad → landing page → form funnel. You get a detailed report showing exactly where prospects drop off and why.</p>
                     </div>
-                    <h3>1. Free Audit</h3>
-                    <p>We analyze your current LinkedIn ad → landing page → form funnel for conversion leaks.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tachometer-alt"></i>
+                <div class="process-step animate">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h3>Quick Wins Implementation</h3>
+                        <p>Within 7 days, we implement 3-5 high-impact fixes that typically increase demo requests by 20-30% immediately.</p>
                     </div>
-                    <h3>2. Identify Leaks</h3>
-                    <p>Show you exactly where and why prospects drop off with data-driven insights.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
+                <div class="process-step animate">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h3>Ongoing Optimization</h3>
+                        <p>Weekly A/B testing and optimization. We test messaging, forms, layouts, and CTAs to continuously improve conversion rates.</p>
                     </div>
-                    <h3>3. Fix & Optimize</h3>
-                    <p>Implement high-impact changes to increase demo requests immediately.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-rocket"></i>
+                <div class="process-step animate">
+                    <div class="step-number">4</div>
+                    <div>
+                        <h3>Scale & Automate</h3>
+                        <p>Systematize what works. Build automation, create templates, and scale successful strategies across your marketing channels.</p>
                     </div>
-                    <h3>4. Scale Results</h3>
-                    <p>Systematically improve performance over 90 days with continuous testing.</p>
                 </div>
             </div>
         </div>
@@ -447,10 +790,14 @@
     <!-- CTA -->
     <section id="contact">
         <div class="container">
-            <div class="cta-section">
-                <h2>Stop Wasting LinkedIn Ad Spend on Broken Funnels</h2>
-                <p>Book your free 30-minute funnel audit. No obligation. We'll show you 3 specific improvements you can make immediately.</p>
-                <a href="#" class="btn-primary" style="background: var(--accent);" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;">Book Your Free Funnel Audit →</a>
+            <div class="cta-section animate">
+                <h2>Get Your Free LinkedIn Funnel Audit</h2>
+                <p>We'll analyze your current LinkedIn ad → demo funnel and show you 3 specific improvements you can make to increase qualified demos by 25-40%.</p>
+                <a href="mailto:pipeline.engineering.agency@gmail.com?subject=Free%20LinkedIn%20Funnel%20Audit&body=Hi%20Pipeline%20Engineering%20team,%20I'd%20like%20a%20free%20LinkedIn%20funnel%20audit.%20Here's%20my%20LinkedIn%20ad%20URL%3A%20%5Bpaste%20link%5D" class="btn-primary" style="background: var(--accent); border-color: var(--accent);">
+                    <i class="fas fa-envelope"></i>
+                    Email for Free Audit →
+                </a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">No automated booking. Real analysis from real humans.</p>
             </div>
         </div>
     </section>
@@ -461,7 +808,8 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Pipeline Engineering</h3>
-                    <p>LinkedIn Ad Funnel Specialists for B2B MarTech SaaS Companies</p>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">LinkedIn Ad Funnel Specialists for ABM Platforms</p>
+                    <p style="color: rgba(255,255,255,0.7);">We fix conversion leaks between LinkedIn ads and demo requests.</p>
                 </div>
                 <div class="footer-column">
                     <h3>Services</h3>
@@ -469,30 +817,84 @@
                         <li><a href="#services">Funnel Audits</a></li>
                         <li><a href="#services">Landing Page Optimization</a></li>
                         <li><a href="#services">Conversion Tracking</a></li>
-                        <li><a href="#services">A/B Testing</a></li>
+                        <li><a href="#services">A/B Testing Strategy</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> pipeline.engineering.agency@gmail.com</li>
-                        <li><i class="fas fa-calendar"></i> <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/pipeline-engineering-agency/30min'});return false;">Schedule Audit</a></li>
+                        <li><a href="mailto:pipeline.engineering.agency@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                            pipeline.engineering.agency@gmail.com
+                        </a></li>
+                        <li><a href="#contact">
+                            <i class="fas fa-chart-line"></i>
+                            Get Free Funnel Audit
+                        </a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Pipeline Engineering. All rights reserved.</p>
+                <p>&copy; <span id="currentYear">2024</span> Pipeline Engineering. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Calendly JS -->
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-    
     <script>
-        // Smooth scrolling for navigation links
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.section-title, .service-card, .client-item, .process-step, .cta-section').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if(targetId === '#') return;
@@ -500,21 +902,24 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
                 }
             });
         });
         
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if(window.scrollY > 50) {
-                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            }
+        // CTA click tracking
+        document.getElementById('heroCta').addEventListener('click', () => {
+            console.log('Hero CTA clicked - Free Funnel Audit');
+        });
+        
+        document.getElementById('headerCta').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: document.getElementById('contact').offsetTop - 100,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
