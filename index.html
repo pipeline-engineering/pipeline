@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pipeline Engineering | ABM Funnel Infrastructure</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Pipeline Engineering | ABM Funnel Audits</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS Variables - Dark Theme Overhaul */
         :root {
             --bg-body: #0D1117;
             --bg-section: #161B22;
@@ -16,10 +17,14 @@
             --navy: #0B1A2E;
             --orange: #F97316;
             --orange-hover: #e06612;
-            --infrastructure-mesh: rgba(48, 54, 61, 0.12);
+            --transparent-orange: rgba(249, 115, 22, 0.1);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -29,184 +34,425 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3 { color: var(--text-primary); font-weight: 700; letter-spacing: -0.03em; }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .section-padding { padding: 8rem 0; }
+        h1, h2, h3, h4 {
+            color: var(--text-primary);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
 
+        p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Layout Helpers */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             background-color: var(--orange);
             color: #FFFFFF;
-            padding: 0.875rem 2rem;
+            padding: 0.875rem 1.75rem;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             border-radius: 4px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            border: none;
-            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
         }
 
         .btn:hover {
             background-color: var(--orange-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
         }
 
-        /* Header */
-        header { 
-            border-bottom: 1px solid var(--border-color); 
-            padding: 1.5rem 0; 
-            background: rgba(13, 17, 23, 0.8); 
-            backdrop-filter: blur(12px);
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
+        /* 1. Header */
+        header {
+            background-color: var(--bg-body);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 10;
         }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
 
-        /* 1. Hero with Technical Mesh */
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* LARGER LOGO SVG */
+        .logo-svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* 2. Hero Section */
         .hero {
             background-color: var(--bg-section);
+            border-bottom: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
-            padding: 10rem 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 8rem 0 10rem 0;
         }
 
-        /* Sophisticated Infrastructure Mesh */
+        /* Faint Technical Pattern (SVG Data URI) */
         .hero::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                radial-gradient(circle at 2px 2px, var(--infrastructure-mesh) 1px, transparent 0);
-            background-size: 40px 40px;
-            mask-image: linear-gradient(to bottom, black, transparent);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2330363D' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.8;
             z-index: 1;
         }
 
-        .hero-content { position: relative; z-index: 3; max-width: 800px; }
-        
-        .trust-badge { 
-            display: inline-flex; 
-            background: var(--bg-card); 
-            border: 1px solid var(--border-color); 
-            padding: 0.5rem 1rem; 
-            border-radius: 4px; 
-            color: var(--text-primary); 
-            margin-bottom: 2.5rem; 
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-family: 'JetBrains Mono', monospace;
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(22,27,34,0) 0%, var(--bg-section) 80%);
+            z-index: 2;
         }
 
-        .hero h1 { font-size: 4.5rem; margin-bottom: 2rem; line-height: 1.1; }
-        .hero h1 span { color: var(--text-secondary); opacity: 0.7; }
-
-        /* 2. Problem Section & Refined Funnel SVG */
-        .problem-section { background-color: var(--bg-body); border-bottom: 1px solid var(--border-color); }
-        .split-grid { display: flex; align-items: center; gap: 3rem; margin-top: 4rem; }
-        .split-card { 
-            background: var(--bg-card); 
-            padding: 3rem; 
-            border: 1px solid var(--border-color); 
-            border-radius: 4px; 
-            flex: 1; 
-            transition: border-color 0.3s ease;
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 850px;
         }
-        .card-right { border-top: 2px solid var(--orange); }
-        .bullet-list { list-style: none; margin-top: 1.5rem; }
-        .bullet-list li { margin-bottom: 1.25rem; color: var(--text-primary); display: flex; gap: 0.75rem; font-size: 1rem; }
-        
-        /* Refined Funnel SVG Styling */
-        .funnel-connector {
-            width: 80px;
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero h1 span {
+            color: var(--text-secondary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* 3. Problem Section */
+        .problem-section {
+            background-color: var(--bg-body);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .problem-header {
+            max-width: 700px;
+            margin-bottom: 4rem;
+        }
+
+        .problem-header h2 {
+            font-size: 2.5rem;
+        }
+
+        .split-grid {
             display: flex;
-            justify-content: center;
-            opacity: 0.6;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
         }
 
-        /* 3. Photo Section */
-        .trust-asset-section {
+        .split-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            flex: 1;
+            align-self: stretch;
+        }
+
+        /* Subtly differentiate the left (client view) and right (agency view) */
+        .card-left {
+            border-top: 4px solid var(--border-color);
+        }
+
+        .card-right {
+            border-top: 4px solid var(--orange);
+            background: rgba(249, 115, 22, 0.03); 
+        }
+
+        .split-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* The center Funnel Diagram */
+        .connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            padding: 0 1rem;
+        }
+
+        .bullet-list {
+            list-style: none;
+        }
+
+        .bullet-list li {
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .bullet-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .bullet-neutral {
+            color: var(--text-secondary);
+        }
+
+        .bullet-warning {
+            color: var(--orange);
+            font-weight: bold;
+        }
+
+        /* 4. Audit Details */
+        .audit-section {
             background-color: var(--bg-section);
             border-bottom: 1px solid var(--border-color);
         }
 
-        .trust-grid {
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+        }
+
+        .audit-grid {
             display: grid;
-            grid-template-columns: 450px 1fr;
-            gap: 5rem;
-            align-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
 
-        .photo-container {
-            position: relative;
-            border-radius: 2px;
-            overflow: hidden;
+        .audit-card {
+            padding: 2.5rem;
             border: 1px solid var(--border-color);
+            border-radius: 6px;
             background: var(--bg-card);
-            line-height: 0;
+            transition: transform 0.2s;
         }
 
-        .photo-container img {
-            width: 100%;
-            height: auto;
-            filter: grayscale(100%) brightness(0.8);
-            transition: filter 0.6s ease;
+        .audit-card:hover {
+            transform: translateY(-4px);
+            border-color: #4B5563;
         }
 
-        .photo-container:hover img {
-            filter: grayscale(0%) brightness(1);
-        }
-
-        .signature-block {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            margin-top: 2rem;
-            color: var(--orange);
-            letter-spacing: 0.05em;
-        }
-
-        /* 4. Audit Cards & Custom SVGs */
-        .audit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 4rem; }
-        .audit-card { 
-            padding: 3rem; 
-            background: var(--bg-card); 
-            border: 1px solid var(--border-color); 
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        .audit-card:hover { border-color: var(--orange); transform: translateY(-5px); }
-        
-        .icon-wrapper { 
-            width: 24px; 
-            height: 24px; 
-            margin-bottom: 2rem; 
-        }
-
-        /* 5. Risk Reversal */
-        .risk-box { 
-            background-color: var(--navy); 
+        .icon-wrapper {
+            margin-bottom: 1.5rem;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-section);
             border: 1px solid var(--border-color);
-            border-left: 4px solid var(--orange); 
-            padding: 5rem; 
-            border-radius: 4px; 
-            margin-top: 4rem; 
+            border-radius: 8px;
         }
-        .risk-box h2 { font-size: 3rem; margin-bottom: 2rem; }
-        .risk-box p { color: var(--text-secondary); font-size: 1.15rem; line-height: 1.8; }
 
-        footer { padding: 5rem 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-body); }
+        .audit-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
 
+        .audit-card p {
+            font-size: 1rem;
+        }
+
+        /* 5. Process */
+        .process-section {
+            background-color: var(--bg-body);
+        }
+
+        .process-track {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 4rem;
+        }
+
+        .process-track::before {
+            content: "";
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+
+        .step {
+            position: relative;
+            z-index: 2;
+            width: 30%;
+            background: var(--bg-body);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-card);
+            color: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step p {
+            font-size: 1rem;
+        }
+
+        /* 6. Risk Reversal */
+        .risk-section {
+            background-color: var(--bg-body);
+            padding: 0 0 6rem 0;
+        }
+
+        .risk-box {
+            background-color: var(--navy);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--orange);
+            padding: 4rem;
+            border-radius: 6px;
+            color: var(--text-primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .risk-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            color: var(--text-primary);
+        }
+
+        .risk-box p {
+            color: var(--text-secondary);
+            max-width: 750px;
+            margin-bottom: 2.5rem;
+        }
+
+        /* 7. Exclusivity */
+        .exclusivity-section {
+            background-color: var(--bg-section);
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .exclusivity-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .exclusivity-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* 8. Footer */
+        footer {
+            background-color: var(--bg-body);
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-content a {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* Responsive Design */
         @media (max-width: 900px) {
-            .trust-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 3rem; }
             .split-grid { flex-direction: column; }
-            .funnel-connector { transform: rotate(90deg); margin: 2rem 0; }
+            .connector { transform: rotate(90deg); margin: 1rem 0; }
             .audit-grid { grid-template-columns: 1fr; }
+            .process-track { flex-direction: column; gap: 3rem; }
+            .process-track::before { 
+                top: 0; bottom: 0; left: 24px; width: 1px; height: auto; 
+            }
+            .step { width: 100%; padding-left: 4rem; }
+            .step-number { position: absolute; left: 0; top: 0; margin-bottom: 0; }
+            .risk-box { padding: 2.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.25rem; }
+            .section-padding { padding: 4rem 0; }
+            .risk-box h2 { font-size: 1.75rem; }
         }
     </style>
 </head>
@@ -215,7 +461,7 @@
     <header>
         <div class="container header-inner">
             <div class="logo-group">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <svg class="logo-svg" width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="16" cy="16" r="15" fill="#0B1A2E" stroke="#F97316" stroke-width="2"/>
                     <path d="M12 22V10H17.5C19.433 10 21 11.567 21 13.5C21 15.433 19.433 17 17.5 17H14V22H12ZM14 15H17.5C18.3284 15 19 14.3284 19 13.5C19 12.6716 18.3284 12 17.5 12H14V15Z" fill="white"/>
                 </svg>
@@ -227,128 +473,146 @@
 
     <section class="hero">
         <div class="container hero-content">
-            <div class="trust-badge">🔒 PERFORMANCE-BASED | NO INVOICE UNTIL YOU SEE THE LEAK</div>
+            <div class="trust-badge">
+                🔒 Performance-Based | No Invoice Until You See The Leak
+            </div>
             <h1>Your LinkedIn Ads Are Driving Traffic.<br><span>Your Demo Form Is Bleeding Pipeline.</span></h1>
-            <p>$500 Funnel Audit. 7 Days. We map every leak between ad click and demo request. If we don't find a leak costing you at least $5K/month, you pay nothing.</p>
-            <a href="mailto:engineering@pipeline.engineering" class="btn">Diagnose My Funnel →</a>
+            <p>$500 Funnel Audit. 7 Days. We map every leak between ad click and demo request—message mismatch, form friction, attribution gaps. If we don't find a leak costing you at least $5K/month in lost pipeline, you pay nothing.</p>
+            <a href="mailto:engineering@pipeline.engineering" class="btn">Diagnose My Funnel &rarr;</a>
         </div>
     </section>
 
     <section class="section-padding problem-section">
         <div class="container">
-            <h2>You're Optimizing Ads. We're Fixing What Happens After The Click.</h2>
+            <div class="problem-header">
+                <h2>You're Optimizing Ads. We're Fixing What Happens After The Click.</h2>
+            </div>
             <div class="split-grid">
-                <div class="split-card">
+                <div class="split-card card-left">
                     <h3>What ABM leaders see:</h3>
                     <ul class="bullet-list">
-                        <li>✓ LinkedIn spend is performing at or above benchmark CTR</li>
-                        <li>✓ Traffic volume is healthy</li>
-                        <li>✓ Demo requests are coming in</li>
+                        <li><span class="bullet-neutral">✓</span> LinkedIn spend is performing at or above benchmark CTR</li>
+                        <li><span class="bullet-neutral">✓</span> Traffic volume is healthy</li>
+                        <li><span class="bullet-neutral">✓</span> Demo requests are coming in</li>
                     </ul>
                 </div>
                 
-                <div class="funnel-connector">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 4H22L14 12V20L10 22V12L2 4Z" stroke="#F97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M18 9L22 11" stroke="#F97316" stroke-width="1.5" stroke-dasharray="2 2"/>
+                <div class="connector">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.8;">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                        <line x1="2" y1="3" x2="22" y2="3" stroke="#30363D"></line>
+                        <line x1="12" y1="12" x2="12" y2="21" stroke="#30363D"></line>
                     </svg>
                 </div>
 
                 <div class="split-card card-right">
                     <h3>What Pipeline Engineering sees:</h3>
                     <ul class="bullet-list">
-                        <li>⚠ 30-50% of qualified traffic never reaches the demo form</li>
-                        <li>⚠ Message mismatch and landing page friction kill high-intent intent</li>
-                        <li>⚠ Attribution is broken—you're optimizing based on incomplete data</li>
+                        <li><span class="bullet-warning">⚠</span> 30-50% of qualified traffic never reaches the demo form</li>
+                        <li><span class="bullet-warning">⚠</span> Ad message and landing page promise don't match—cognitive dissonance kills intent</li>
+                        <li><span class="bullet-warning">⚠</span> Form fields ask for information before value is proven—every extra field costs 5-10% conversion</li>
+                        <li><span class="bullet-warning">⚠</span> Attribution is broken—you're optimizing campaigns based on incomplete data</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding trust-asset-section">
-        <div class="container trust-grid">
-            <div class="photo-container">
-                <img src="lead-engineer.jpg" alt="Lead Funnel Engineer">
-            </div>
-            <div class="trust-copy">
-                <h2 style="margin-bottom: 2rem; font-size: 2.5rem;">"Generalist agencies focus on clicks. We focus on the engineering of the hand-off."</h2>
-                <p>Most marketing teams are brilliant at driving traffic, but the 'last mile'—the actual conversion system—is often left to chance. We treat your funnel as a technical infrastructure project.</p>
-                <div class="signature-block">
-                    // AUTHENTICATED AUDIT SYSTEM<br>
-                    // INFRASTRUCTURE VERIFIED // ID: 08-229
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding" style="background: var(--bg-body);">
+    <section class="section-padding audit-section">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 4rem; font-size: 2.5rem;">The $500 Funnel Audit</h2>
+            <div class="section-title">
+                <h2>The $500 Funnel Audit: What You Actually Receive</h2>
+            </div>
             <div class="audit-grid">
                 <div class="audit-card">
                     <div class="icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"/>
-                            <circle cx="19" cy="5" r="2"/>
-                            <circle cx="5" cy="19" r="2"/>
-                            <line x1="17.3" y1="6.7" x2="13.7" y2="10.3"/>
-                            <line x1="10.3" y1="13.7" x2="6.7" y2="17.3"/>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                         </svg>
                     </div>
                     <h3>Full Funnel Forensics</h3>
-                    <p>We don't guess. We map every touchpoint: Ad Creative → Landing Page → Content Flow → Demo Form → CRM.</p>
+                    <p>We don't guess. We map every touchpoint: Ad Creative &rarr; Landing Page &rarr; Content Flow &rarr; Demo Form &rarr; CRM Attribution. You'll see exactly where prospects drop off and why.</p>
                 </div>
                 
                 <div class="audit-card">
                     <div class="icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z"/>
-                            <circle cx="12" cy="12" r="3"/>
-                            <line x1="12" y1="12" x2="16" y2="16"/>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            <circle cx="16" cy="16" r="5"></circle>
+                            <line x1="19.5" y1="19.5" x2="23" y2="23"></line>
                         </svg>
                     </div>
                     <h3>Quantified Leak Analysis</h3>
-                    <p>Each leak is isolated. We tell you exactly what each form field or tracking gap costs you in monthly pipeline.</p>
+                    <p>Each leak is isolated and measured. We'll tell you: "This specific form field is costing you approximately $X,XXX/month in lost pipeline based on your current ad spend."</p>
                 </div>
                 
                 <div class="audit-card">
                     <div class="icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16v16H4z"/>
-                            <path d="M8 8h8M8 12h8M8 16h5"/>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="8" y1="13" x2="16" y2="13"></line>
+                            <line x1="8" y1="17" x2="16" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
                         </svg>
                     </div>
                     <h3>3-Page Actionable Report</h3>
-                    <p>Delivered in 7 days. Visual evidence, industry benchmarks, and specific, implementable engineering fixes.</p>
+                    <p>Delivered in 7 days. Each page covers one critical leak with: Visual evidence, Industry benchmark comparison, Specific implementable fix.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding" style="background: var(--bg-body);">
+    <section class="section-padding process-section">
         <div class="container">
-            <div class="risk-box">
-                <h2>You Don't Pay Unless We Find A Leak Costing You Pipeline.</h2>
-                <p>If the estimated loss is less than $5,000/month—or if we find no leaks at all—you owe nothing. We only succeed when we deliver clear, actionable value. You receive the full report regardless.</p>
-                <a href="mailto:engineering@pipeline.engineering" class="btn" style="margin-top: 3rem;">Start Risk-Free Audit →</a>
+            <h2>Zero Disruption. Full Transparency.</h2>
+            <div class="process-track">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>You Share Access (Read-Only)</h3>
+                    <p>We request view-only access to your LinkedIn Ads account and landing page analytics. No passwords. No sensitive data. 15-minute screen share optional.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Conduct Deep Analysis</h3>
+                    <p>Our team maps the full user journey. We identify friction points, tracking gaps, and message mismatches. You go about your week.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>You Receive The Report</h3>
+                    <p>7 days later, you get the 3-page audit. Read it. Implement the fixes yourself. Or hire us to do it. Zero pressure. Zero obligation.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding" style="background: var(--bg-section); border-top: 1px solid var(--border-color); text-align: center;">
+    <section class="risk-section">
         <div class="container">
-            <div style="max-width: 700px; margin: 0 auto;">
-                <h2 style="margin-bottom: 2rem;">Specialized for ABM Platforms & B2B MarTech.</h2>
-                <p>We work exclusively with Series A–C companies running $10K–$100K/month in LinkedIn spend. If you rely on demo requests to fill your pipeline, we are the specialists.</p>
+            <div class="risk-box">
+                <h2>You Don't Pay Unless We Find A Leak Costing You Pipeline.</h2>
+                <p>Here's our guarantee, stated plainly: <br><br>1. We will identify at least one specific, quantifiable leak in your ad-to-demo funnel. <br>2. We will estimate the monthly pipeline loss that leak is causing. <br>3. If the estimated loss is less than $5,000/month—or if we find no leaks at all—you owe nothing. The audit is free. <br>4. You receive the full report regardless. Keep it. Use it. We only get paid when we deliver clear, actionable value.</p>
+                <a href="mailto:engineering@pipeline.engineering" class="btn">Start Risk-Free Audit &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding exclusivity-section">
+        <div class="container">
+            <div class="exclusivity-content">
+                <h2>We Work Exclusively With ABM Platforms & B2B Marketing Technology.</h2>
+                <p>Pipeline Engineering is not a generalist agency. We specialize in one problem: fixing the LinkedIn ad-to-demo funnel for B2B SaaS companies that sell to marketing and sales teams. Our clients are Series A–C companies (20–200 employees) running $10K–$100K/month in LinkedIn spend. They use platforms like 6sense, Demandbase, Terminus, RollWorks. They rely on demo requests to fill pipeline. If that's not you, we're probably not a fit.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">
+        <div class="container footer-content">
             <a href="mailto:engineering@pipeline.engineering">engineering@pipeline.engineering</a>
-            <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.5;">© 2026 Pipeline Engineering — Funnel systems for ABM platforms.</p>
+            <p>&copy; 2026 Pipeline Engineering — Funnel systems for ABM platforms.</p>
         </div>
     </footer>
 
