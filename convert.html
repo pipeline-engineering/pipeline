@@ -144,6 +144,7 @@
             text-decoration: none;
             transition: all 0.2s ease;
             border: 1px solid transparent;
+            cursor: pointer;
         }
 
         .btn-outline {
@@ -184,6 +185,31 @@
             font-size: 0.9rem;
             color: var(--text-primary);
             margin-bottom: 1rem;
+        }
+
+        /* Template Box Styling */
+        .template-box {
+            background: var(--bg-section);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: left;
+            margin-top: 1rem;
+        }
+
+        .template-box p {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .template-content {
+            background: var(--bg-body);
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            white-space: pre-line;
         }
 
         /* Footer */
@@ -232,7 +258,7 @@
             <p class="subhead">Two ways. Same guarantee. Zero pressure.</p>
 
             <div class="option-grid">
-                <!-- Email Option -->
+                <!-- Email Option with Copy-to-Clipboard -->
                 <div class="option-card">
                     <div class="option-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -241,8 +267,29 @@
                         </svg>
                     </div>
                     <h2>Send an email</h2>
-                    <p>Click below to open your mail client. We've prepared a template—just add your company name. We reply within 12 hours to schedule next steps.</p>
-                    <a href="mailto:pipeline.engineering.agency@gmail.com?subject=Funnel%20Audit%20Request&body=Hi%20Pipeline%20Engineering%2C%0A%0AI'd%20like%20to%20request%20the%20Funnel%20Audit.%20My%20company%20is%20%5BCompany%20Name%5D.%0A%0AWe%20run%20LinkedIn%20ads%20and%20would%20like%20to%20understand%20where%20our%20ad-to-demo%20funnel%20is%20leaking.%0A%0APlease%20let%20me%20know%20next%20steps.%0A%0AThanks%2C%0A%5BYour%20Name%5D" class="btn">Open Email Template →</a>
+                    <p>Use the template below. We reply within 12 hours.</p>
+                    
+                    <!-- Copy Email Button -->
+                    <button id="copyEmailBtn" class="btn" style="margin-bottom: 1rem;">📋 Copy Email Address</button>
+                    
+                    <!-- Email Template Box -->
+                    <div class="template-box">
+                        <p><strong style="color: var(--orange);">📧 To:</strong> pipeline.engineering.agency@gmail.com</p>
+                        <p><strong style="color: var(--orange);">📌 Subject:</strong> Funnel Audit Request</p>
+                        <p><strong style="color: var(--orange);">📝 Template:</strong></p>
+                        <div class="template-content">
+Hi Pipeline Engineering,
+
+I'd like to request the Funnel Audit. My company is [Company Name].
+
+We run LinkedIn ads and would like to understand where our ad-to-demo funnel is leaking.
+
+Please let me know next steps.
+
+Thanks,
+[Your Name]
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Call Option -->
@@ -256,8 +303,8 @@
                     </div>
                     <h2>Book a 20-min call</h2>
                     <p>Pick a time that works for you. We'll walk through your current funnel and identify one immediate leak on the call—no obligation.</p>
-                    <!-- Replace YOUR_CALENDLY_LINK with your actual Calendly URL -->
-                    <a href="#" class="btn" onclick="alert('Calendly integration coming soon. Please use email option for now, or contact engineering@pipeline.engineering directly.'); return false;">Schedule Call →</a>
+                    <!-- REPLACE THE HREF BELOW WITH YOUR ACTUAL CALENDLY LINK -->
+                    <a href="#" class="btn" onclick="alert('Calendly integration coming soon. Please use the email option for now, or contact pipeline.engineering.agency@gmail.com directly.'); return false;">Schedule Call →</a>
                 </div>
             </div>
 
@@ -276,6 +323,17 @@
             <p style="margin-top: 0.5rem;">&copy; 2026 Pipeline Engineering — Funnel systems for ABM platforms.</p>
         </div>
     </footer>
+
+    <!-- Copy-to-Clipboard Script -->
+    <script>
+        document.getElementById('copyEmailBtn').addEventListener('click', function() {
+            navigator.clipboard.writeText('pipeline.engineering.agency@gmail.com').then(function() {
+                alert('✅ Email address copied to clipboard!');
+            }).catch(function() {
+                prompt('Manually copy this email address:', 'pipeline.engineering.agency@gmail.com');
+            });
+        });
+    </script>
 
 </body>
 </html>
