@@ -6,15 +6,18 @@
     <title>Pipeline Engineering | ABM Funnel Audits</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables & Global Reset */
+        /* CSS Variables - Dark Theme Overhaul */
         :root {
+            --bg-body: #0D1117;
+            --bg-section: #161B22;
+            --bg-card: #1C2128;
+            --border-color: #30363D;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8B949E;
             --navy: #0B1A2E;
             --orange: #F97316;
-            --white: #FFFFFF;
-            --gray: #4B5563;
-            --light-bg: #F7F9FC;
-            --border-light: rgba(11, 26, 46, 0.1);
-            --border-dark: rgba(255, 255, 255, 0.1);
+            --orange-hover: #e06612;
+            --transparent-orange: rgba(249, 115, 22, 0.1);
         }
 
         * {
@@ -25,21 +28,22 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--gray);
-            background-color: var(--light-bg);
+            color: var(--text-secondary);
+            background-color: var(--bg-body);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4 {
-            color: var(--navy);
+            color: var(--text-primary);
             font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
 
         p {
             font-size: 1.125rem;
+            color: var(--text-secondary);
         }
 
         a {
@@ -63,7 +67,7 @@
             align-items: center;
             justify-content: center;
             background-color: var(--orange);
-            color: var(--white);
+            color: #FFFFFF;
             padding: 0.875rem 1.75rem;
             font-weight: 600;
             font-size: 1rem;
@@ -73,15 +77,15 @@
         }
 
         .btn:hover {
-            background-color: #e06612;
+            background-color: var(--orange-hover);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
         }
 
         /* 1. Header */
         header {
-            background-color: var(--navy);
-            border-bottom: 1px solid var(--border-dark);
+            background-color: var(--bg-body);
+            border-bottom: 1px solid var(--border-color);
             padding: 1.25rem 0;
             position: relative;
             z-index: 10;
@@ -100,7 +104,7 @@
         }
 
         .logo-text {
-            color: var(--white);
+            color: var(--text-primary);
             font-weight: 600;
             font-size: 1.25rem;
             letter-spacing: -0.01em;
@@ -108,76 +112,72 @@
 
         /* 2. Hero Section */
         .hero {
-            background-color: var(--navy);
-            color: var(--white);
+            background-color: var(--bg-section);
+            border-bottom: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
             padding: 8rem 0 10rem 0;
         }
 
-        /* Abstract Technical Graphic / Grid */
+        /* Faint Technical Pattern (SVG Data URI) */
         .hero::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                linear-gradient(var(--border-dark) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border-dark) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.3;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2330363D' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.8;
             z-index: 1;
         }
-        
+
         .hero::after {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 0%, rgba(11,26,46,0) 0%, var(--navy) 80%);
+            background: radial-gradient(circle at 50% 0%, rgba(22,27,34,0) 0%, var(--bg-section) 80%);
             z-index: 2;
         }
 
         .hero-content {
             position: relative;
             z-index: 3;
-            max-width: 800px;
+            max-width: 850px;
         }
 
         .trust-badge {
             display: inline-flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-dark);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             padding: 0.5rem 1rem;
             border-radius: 100px;
             font-size: 0.875rem;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
             margin-bottom: 2rem;
             letter-spacing: 0.02em;
         }
 
         .hero h1 {
-            color: var(--white);
-            font-size: 4.5rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
+            color: var(--text-primary);
         }
 
         .hero h1 span {
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         .hero p {
-            color: rgba(255, 255, 255, 0.7);
             font-size: 1.25rem;
-            max-width: 600px;
+            max-width: 700px;
             margin-bottom: 2.5rem;
             line-height: 1.7;
         }
 
-        /* 3. Problem Statement */
+        /* 3. Problem Section */
         .problem-section {
-            background-color: var(--light-bg);
-            border-bottom: 1px solid var(--border-light);
+            background-color: var(--bg-body);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .problem-header {
@@ -190,34 +190,43 @@
         }
 
         .split-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 2rem;
         }
 
         .split-card {
-            background: var(--white);
+            background: var(--bg-card);
             padding: 2.5rem;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
             border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            flex: 1;
+            align-self: stretch;
         }
 
+        /* Subtly differentiate the left (client view) and right (agency view) */
         .card-left {
-            border-top: 4px solid var(--gray);
+            border-top: 4px solid var(--border-color);
         }
 
         .card-right {
             border-top: 4px solid var(--orange);
-            background: rgba(249, 115, 22, 0.02);
+            background: rgba(249, 115, 22, 0.03); 
         }
 
         .split-card h3 {
             font-size: 1.25rem;
             margin-bottom: 1.5rem;
+        }
+
+        /* The center Funnel Diagram */
+        .connector {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            justify-content: center;
+            flex-shrink: 0;
+            padding: 0 1rem;
         }
 
         .bullet-list {
@@ -225,37 +234,32 @@
         }
 
         .bullet-list li {
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
-            font-size: 1.125rem;
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.5;
         }
 
-        .bullet-neutral::before {
-            content: "✓";
-            color: var(--gray);
-            font-weight: bold;
+        .bullet-list li:last-child {
+            margin-bottom: 0;
         }
 
-        .bullet-warning::before {
-            content: "!";
+        .bullet-neutral {
+            color: var(--text-secondary);
+        }
+
+        .bullet-warning {
             color: var(--orange);
             font-weight: bold;
-            font-family: monospace;
-            background: rgba(249, 115, 22, 0.1);
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
         }
 
         /* 4. Audit Details */
         .audit-section {
-            background-color: var(--white);
-            border-bottom: 1px solid var(--border-light);
+            background-color: var(--bg-section);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .section-title {
@@ -275,14 +279,15 @@
 
         .audit-card {
             padding: 2.5rem;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
             border-radius: 6px;
-            background: var(--light-bg);
+            background: var(--bg-card);
             transition: transform 0.2s;
         }
 
         .audit-card:hover {
             transform: translateY(-4px);
+            border-color: #4B5563;
         }
 
         .icon-wrapper {
@@ -292,10 +297,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--white);
-            border: 1px solid var(--border-light);
+            background: var(--bg-section);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            color: var(--navy);
         }
 
         .audit-card h3 {
@@ -305,12 +309,11 @@
 
         .audit-card p {
             font-size: 1rem;
-            color: var(--gray);
         }
 
         /* 5. Process */
         .process-section {
-            background-color: var(--light-bg);
+            background-color: var(--bg-body);
         }
 
         .process-track {
@@ -327,7 +330,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: var(--border-light);
+            background: var(--border-color);
             z-index: 1;
         }
 
@@ -335,14 +338,14 @@
             position: relative;
             z-index: 2;
             width: 30%;
-            background: var(--light-bg);
+            background: var(--bg-body);
         }
 
         .step-number {
             width: 48px;
             height: 48px;
-            background: var(--navy);
-            color: var(--white);
+            background: var(--bg-card);
+            color: var(--orange);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -350,7 +353,7 @@
             font-weight: 700;
             font-size: 1.25rem;
             margin-bottom: 1.5rem;
-            border: 4px solid var(--light-bg);
+            border: 1px solid var(--border-color);
         }
 
         .step h3 {
@@ -364,42 +367,43 @@
 
         /* 6. Risk Reversal */
         .risk-section {
-            background-color: var(--light-bg);
+            background-color: var(--bg-body);
             padding: 0 0 6rem 0;
         }
 
         .risk-box {
             background-color: var(--navy);
+            border: 1px solid var(--border-color);
             border-left: 4px solid var(--orange);
             padding: 4rem;
-            border-radius: 0 6px 6px 0;
-            color: var(--white);
-            box-shadow: 0 20px 40px rgba(11, 26, 46, 0.15);
+            border-radius: 6px;
+            color: var(--text-primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .risk-box h2 {
-            color: var(--white);
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             max-width: 800px;
+            color: var(--text-primary);
         }
 
         .risk-box p {
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 700px;
+            color: var(--text-secondary);
+            max-width: 750px;
             margin-bottom: 2.5rem;
         }
 
         /* 7. Exclusivity */
         .exclusivity-section {
-            background-color: var(--white);
+            background-color: var(--bg-section);
             text-align: center;
-            border-top: 1px solid var(--border-light);
-            border-bottom: 1px solid var(--border-light);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .exclusivity-content {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
@@ -410,14 +414,15 @@
 
         /* 8. Footer */
         footer {
-            background-color: var(--light-bg);
+            background-color: var(--bg-body);
             padding: 3rem 0;
             text-align: center;
             font-size: 0.875rem;
+            color: var(--text-secondary);
         }
 
         .footer-content a {
-            color: var(--navy);
+            color: var(--text-primary);
             font-weight: 600;
             margin-bottom: 1rem;
             display: inline-block;
@@ -425,8 +430,10 @@
 
         /* Responsive Design */
         @media (max-width: 900px) {
-            .hero h1 { font-size: 3.5rem; }
-            .split-grid, .audit-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
+            .split-grid { flex-direction: column; }
+            .connector { transform: rotate(90deg); margin: 1rem 0; }
+            .audit-grid { grid-template-columns: 1fr; }
             .process-track { flex-direction: column; gap: 3rem; }
             .process-track::before { 
                 top: 0; bottom: 0; left: 24px; width: 1px; height: auto; 
@@ -437,9 +444,9 @@
         }
 
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.25rem; }
             .section-padding { padding: 4rem 0; }
-            .risk-box h2 { font-size: 2rem; }
+            .risk-box h2 { font-size: 1.75rem; }
         }
     </style>
 </head>
@@ -461,10 +468,10 @@
     <section class="hero">
         <div class="container hero-content">
             <div class="trust-badge">
-                🔒 No invoice until you see the leak.
+                🔒 Performance-Based | No Invoice Until You See The Leak
             </div>
-            <h1>Your LinkedIn Ads Work.<br><span>Your Demo Form Doesn't.</span></h1>
-            <p>$500 Funnel Audit. 7 Days. We find the conversion leaks costing you pipeline. If we don't find a leak, you don't pay.</p>
+            <h1>Your LinkedIn Ads Are Driving Traffic.<br><span>Your Demo Form Is Bleeding Pipeline.</span></h1>
+            <p>$500 Funnel Audit. 7 Days. We map every leak between ad click and demo request—message mismatch, form friction, attribution gaps. If we don't find a leak costing you at least $5K/month in lost pipeline, you pay nothing.</p>
             <a href="mailto:engineering@pipeline.engineering" class="btn">Diagnose My Funnel &rarr;</a>
         </div>
     </section>
@@ -472,23 +479,33 @@
     <section class="section-padding problem-section">
         <div class="container">
             <div class="problem-header">
-                <h2>The real leak isn't the ad. It's what happens after the click.</h2>
+                <h2>You're Optimizing Ads. We're Fixing What Happens After The Click.</h2>
             </div>
             <div class="split-grid">
                 <div class="split-card card-left">
                     <h3>What ABM leaders see:</h3>
                     <ul class="bullet-list">
-                        <li class="bullet-neutral">High LinkedIn campaign spend.</li>
-                        <li class="bullet-neutral">Decent click-through rates.</li>
-                        <li class="bullet-neutral">Traffic actively flowing to the site.</li>
+                        <li><span class="bullet-neutral">✓</span> LinkedIn spend is performing at or above benchmark CTR</li>
+                        <li><span class="bullet-neutral">✓</span> Traffic volume is healthy</li>
+                        <li><span class="bullet-neutral">✓</span> Demo requests are coming in</li>
                     </ul>
                 </div>
+                
+                <div class="connector">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.8;">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                        <line x1="2" y1="3" x2="22" y2="3" stroke="#30363D"></line>
+                        <line x1="12" y1="12" x2="12" y2="21" stroke="#30363D"></line>
+                    </svg>
+                </div>
+
                 <div class="split-card card-right">
                     <h3>What Pipeline Engineering sees:</h3>
                     <ul class="bullet-list">
-                        <li class="bullet-warning">30-50% of traffic leaking before the demo request.</li>
-                        <li class="bullet-warning">Severe message mismatch from ad creative to landing page.</li>
-                        <li class="bullet-warning">Form field friction and broken attribution signals.</li>
+                        <li><span class="bullet-warning">⚠</span> 30-50% of qualified traffic never reaches the demo form</li>
+                        <li><span class="bullet-warning">⚠</span> Ad message and landing page promise don't match—cognitive dissonance kills intent</li>
+                        <li><span class="bullet-warning">⚠</span> Form fields ask for information before value is proven—every extra field costs 5-10% conversion</li>
+                        <li><span class="bullet-warning">⚠</span> Attribution is broken—you're optimizing campaigns based on incomplete data</li>
                     </ul>
                 </div>
             </div>
@@ -498,12 +515,12 @@
     <section class="section-padding audit-section">
         <div class="container">
             <div class="section-title">
-                <h2>A complete diagnosis of your ad-to-demo pipeline.</h2>
+                <h2>The $500 Funnel Audit: What You Actually Receive</h2>
             </div>
             <div class="audit-grid">
                 <div class="audit-card">
                     <div class="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="18" cy="5" r="3"></circle>
                             <circle cx="6" cy="12" r="3"></circle>
                             <circle cx="18" cy="19" r="3"></circle>
@@ -511,31 +528,34 @@
                             <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                         </svg>
                     </div>
-                    <h3>Full Funnel Mapping</h3>
-                    <p>Ad &rarr; Landing Page &rarr; Content &rarr; Demo Form &rarr; Attribution.</p>
+                    <h3>Full Funnel Forensics</h3>
+                    <p>We don't guess. We map every touchpoint: Ad Creative &rarr; Landing Page &rarr; Content Flow &rarr; Demo Form &rarr; CRM Attribution. You'll see exactly where prospects drop off and why.</p>
                 </div>
+                
                 <div class="audit-card">
                     <div class="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            <circle cx="16" cy="16" r="5"></circle>
+                            <line x1="19.5" y1="19.5" x2="23" y2="23"></line>
                         </svg>
                     </div>
-                    <h3>Leak Identification</h3>
-                    <p>Message mismatch, form field friction, missing CTAs, and critical tracking gaps.</p>
+                    <h3>Quantified Leak Analysis</h3>
+                    <p>Each leak is isolated and measured. We'll tell you: "This specific form field is costing you approximately $X,XXX/month in lost pipeline based on your current ad spend."</p>
                 </div>
+                
                 <div class="audit-card">
                     <div class="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <line x1="8" y1="13" x2="16" y2="13"></line>
+                            <line x1="8" y1="17" x2="16" y2="17"></line>
                             <polyline points="10 9 9 9 8 9"></polyline>
                         </svg>
                     </div>
                     <h3>3-Page Actionable Report</h3>
-                    <p>Delivered in 7 days. Each leak quantified with estimated pipeline loss. Specific fix provided for each leak.</p>
+                    <p>Delivered in 7 days. Each page covers one critical leak with: Visual evidence, Industry benchmark comparison, Specific implementable fix.</p>
                 </div>
             </div>
         </div>
@@ -543,22 +563,22 @@
 
     <section class="section-padding process-section">
         <div class="container">
-            <h2>From audit to fix in three steps.</h2>
+            <h2>Zero Disruption. Full Transparency.</h2>
             <div class="process-track">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Request Audit</h3>
-                    <p>Initiate the process via email. We'll set up a brief sync to understand your core objectives.</p>
+                    <h3>You Share Access (Read-Only)</h3>
+                    <p>We request view-only access to your LinkedIn Ads account and landing page analytics. No passwords. No sensitive data. 15-minute screen share optional.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>We Analyze</h3>
-                    <p>Provide read-only access or walk us through via screen share. We map the entire user journey.</p>
+                    <h3>We Conduct Deep Analysis</h3>
+                    <p>Our team maps the full user journey. We identify friction points, tracking gaps, and message mismatches. You go about your week.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Receive Report</h3>
-                    <p>Get the leak map and precise engineering fixes. Zero obligation to use us for implementation.</p>
+                    <h3>You Receive The Report</h3>
+                    <p>7 days later, you get the 3-page audit. Read it. Implement the fixes yourself. Or hire us to do it. Zero pressure. Zero obligation.</p>
                 </div>
             </div>
         </div>
@@ -567,8 +587,8 @@
     <section class="risk-section">
         <div class="container">
             <div class="risk-box">
-                <h2>You don't pay unless we find a leak costing you demos.</h2>
-                <p>If our audit doesn't uncover specific conversion leaks that are directly impacting your pipeline, you owe nothing. The audit is free. We only succeed when you see clear, actionable problems to fix.</p>
+                <h2>You Don't Pay Unless We Find A Leak Costing You Pipeline.</h2>
+                <p>Here's our guarantee, stated plainly: <br><br>1. We will identify at least one specific, quantifiable leak in your ad-to-demo funnel. <br>2. We will estimate the monthly pipeline loss that leak is causing. <br>3. If the estimated loss is less than $5,000/month—or if we find no leaks at all—you owe nothing. The audit is free. <br>4. You receive the full report regardless. Keep it. Use it. We only get paid when we deliver clear, actionable value.</p>
                 <a href="mailto:engineering@pipeline.engineering" class="btn">Start Risk-Free Audit &rarr;</a>
             </div>
         </div>
@@ -577,8 +597,8 @@
     <section class="section-padding exclusivity-section">
         <div class="container">
             <div class="exclusivity-content">
-                <h2>Specialized for ABM platforms & B2B marketing technology.</h2>
-                <p>We work exclusively with Series A-C SaaS companies (20-200 employees) who run LinkedIn ads and rely on demo requests for pipeline. If that's not you, we're probably not a fit.</p>
+                <h2>We Work Exclusively With ABM Platforms & B2B Marketing Technology.</h2>
+                <p>Pipeline Engineering is not a generalist agency. We specialize in one problem: fixing the LinkedIn ad-to-demo funnel for B2B SaaS companies that sell to marketing and sales teams. Our clients are Series A–C companies (20–200 employees) running $10K–$100K/month in LinkedIn spend. They use platforms like 6sense, Demandbase, Terminus, RollWorks. They rely on demo requests to fill pipeline. If that's not you, we're probably not a fit.</p>
             </div>
         </div>
     </section>
